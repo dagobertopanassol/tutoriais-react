@@ -1,0 +1,4 @@
+type Teste @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  celular: String
+}
