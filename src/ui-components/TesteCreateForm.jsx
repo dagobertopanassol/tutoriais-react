@@ -24,15 +24,19 @@ export default function TesteCreateForm(props) {
   } = props;
   const initialValues = {
     celular: "",
+    owner: "",
   };
   const [celular, setCelular] = React.useState(initialValues.celular);
+  const [owner, setOwner] = React.useState(initialValues.owner);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     setCelular(initialValues.celular);
+    setOwner(initialValues.owner);
     setErrors({});
   };
   const validations = {
     celular: [],
+    owner: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -61,6 +65,7 @@ export default function TesteCreateForm(props) {
         event.preventDefault();
         let modelFields = {
           celular,
+          owner,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -116,6 +121,7 @@ export default function TesteCreateForm(props) {
           if (onChange) {
             const modelFields = {
               celular: value,
+              owner,
             };
             const result = onChange(modelFields);
             value = result?.celular ?? value;
@@ -129,6 +135,31 @@ export default function TesteCreateForm(props) {
         errorMessage={errors.celular?.errorMessage}
         hasError={errors.celular?.hasError}
         {...getOverrideProps(overrides, "celular")}
+      ></TextField>
+      <TextField
+        label="Owner"
+        isRequired={false}
+        isReadOnly={false}
+        value={owner}
+        onChange={(e) => {
+          let { value } = e.target;
+          if (onChange) {
+            const modelFields = {
+              celular,
+              owner: value,
+            };
+            const result = onChange(modelFields);
+            value = result?.owner ?? value;
+          }
+          if (errors.owner?.hasError) {
+            runValidationTasks("owner", value);
+          }
+          setOwner(value);
+        }}
+        onBlur={() => runValidationTasks("owner", owner)}
+        errorMessage={errors.owner?.errorMessage}
+        hasError={errors.owner?.hasError}
+        {...getOverrideProps(overrides, "owner")}
       ></TextField>
       <Flex
         justifyContent="space-between"

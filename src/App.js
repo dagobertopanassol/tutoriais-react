@@ -1,20 +1,41 @@
 //import logo from './logo.svg';
+import { withAuthenticator } from '@aws-amplify/ui-react';
 import './App.css';
+import '@aws-amplify/ui-react/styles.css'; // require
+import { Amplify } from 'aws-amplify';
+import awsExports from './aws-exports';
+//componentes
 import Button from './components/Button';
-function App() { 
+import Lista from './consultas/Lista';
+
+Amplify.configure(awsExports);
+
+function App( signOut, user ) { 
   return (
     <div className="App">
       <header className="App-header">
         <div>
           <p> 
-            CurricuBI - Facilitando sua Vida na hora de criar um Currículo !
+            Bem Vindo  {user.username}, {user.id}<br></br>
+            CurricuBI - Facilitando sua Vida na hora de criar o seu Melhor Currículo !
+
           </p>
-          {/* <Button title="Propriedade title"></Button>
-          <Button>Passado</Button> */}
+          {
+          /* <Button title="Propriedade title"></Button> */
+          <Button>Btn</Button> 
+          
+          }
         </div>
       </header>
+      <div>
+      
+        <button onClick={signOut}>Sair</button>
+        <Lista/>
+
+      </div>
     </div>
   );
 }
 
-export default App;
+Lista()
+export default withAuthenticator(App);
