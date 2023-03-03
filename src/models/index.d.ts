@@ -13,7 +13,7 @@ type EagerTeste = {
   };
   readonly id: string;
   readonly celular?: string | null;
-  readonly owner?: string | null;
+  readonly nascimento?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -25,7 +25,7 @@ type LazyTeste = {
   };
   readonly id: string;
   readonly celular?: string | null;
-  readonly owner?: string | null;
+  readonly nascimento?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

@@ -14,17 +14,17 @@ export declare type ValidationResponse = {
 export declare type ValidationFunction<T> = (value: T, validationResponse: ValidationResponse) => ValidationResponse | Promise<ValidationResponse>;
 export declare type TesteCreateFormInputValues = {
     celular?: string;
-    owner?: string;
+    nascimento?: string;
 };
 export declare type TesteCreateFormValidationValues = {
     celular?: ValidationFunction<string>;
-    owner?: ValidationFunction<string>;
+    nascimento?: ValidationFunction<string>;
 };
 export declare type PrimitiveOverrideProps<T> = Partial<T> & React.DOMAttributes<HTMLDivElement>;
 export declare type TesteCreateFormOverridesProps = {
     TesteCreateFormGrid?: PrimitiveOverrideProps<GridProps>;
     celular?: PrimitiveOverrideProps<TextFieldProps>;
-    owner?: PrimitiveOverrideProps<TextFieldProps>;
+    nascimento?: PrimitiveOverrideProps<TextFieldProps>;
 } & EscapeHatchProps;
 export declare type TesteCreateFormProps = React.PropsWithChildren<{
     overrides?: TesteCreateFormOverridesProps | undefined | null;

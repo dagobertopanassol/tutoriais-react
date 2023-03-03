@@ -1,6 +1,6 @@
 //import React from 'react';
-import { DataStore } from '@aws-amplify/datastore';
-import { Teste } from '../../models';
+//import { DataStore } from '@aws-amplify/datastore';
+//import { Teste } from '../../models';
 import { API,graphqlOperation } from '@aws-amplify/api'
 
 import { Amplify } from 'aws-amplify';
@@ -10,7 +10,7 @@ Amplify.configure(awsExports);
 function Lista () {
     graphql1();
     console.log("func lista")
-    return
+    //return
 };
     
 /*
@@ -18,6 +18,24 @@ function Lista () {
   console.log("models2")
   console.log(models2 );
 */
+  async function graphql1() {
+    
+      let response = await API.graphql(graphqlOperation(`
+        query MyQuery {
+          getTeste(id: "2917178f-2cd3-46c2-9c8a-096f036ed219") {
+            celular
+          }
+        }
+
+      `));
+      let userData = await response.json();
+      return userData.data;
+      //console.log('Posts', result.data.listPosts.items);      //console.log('Posts', result.data);      //console.log('Items', result.data.getTeste );
+      //const res = result.data.getTeste.celular;
+      //console.log('PostsDetalhes', result.data.getTeste.celular );
+    }
+
+ /*
   async function graphql1() {
     try {
       const result = await API.graphql(graphqlOperation(`
@@ -36,8 +54,8 @@ function Lista () {
       console.log('Error listing posts', error);
     }
   }
+*/
 
- 
 
   //const m1 = models2.json;
  /* const detalhes = models2.key[0].map((n) => {

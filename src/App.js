@@ -6,7 +6,8 @@ import { Amplify } from 'aws-amplify';
 import awsExports from './aws-exports';
 //componentes
 import Button from './components/Button';
-import Lista from './consultas/Lista';
+//import Lista from './consultas/Lista';
+import {  EditProfile  } from './ui-components';
 
 Amplify.configure(awsExports);
 
@@ -22,20 +23,22 @@ function App( signOut, user ) {
           </p>
           {
           /* <Button title="Propriedade title"></Button> */
-          <Button>Btn</Button> 
           
+          <EditProfile></EditProfile>
+       
+
           }
         </div>
       </header>
       <div>
       
         <button onClick={signOut}>Sair</button>
-        <Lista/>
+       
 
       </div>
     </div>
   );
 }
 
-Lista()
+//Lista()
 export default withAuthenticator(App);

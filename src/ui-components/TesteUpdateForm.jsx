@@ -25,17 +25,17 @@ export default function TesteUpdateForm(props) {
   } = props;
   const initialValues = {
     celular: "",
-    owner: "",
+    nascimento: "",
   };
   const [celular, setCelular] = React.useState(initialValues.celular);
-  const [owner, setOwner] = React.useState(initialValues.owner);
+  const [nascimento, setNascimento] = React.useState(initialValues.nascimento);
   const [errors, setErrors] = React.useState({});
   const resetStateValues = () => {
     const cleanValues = testeRecord
       ? { ...initialValues, ...testeRecord }
       : initialValues;
     setCelular(cleanValues.celular);
-    setOwner(cleanValues.owner);
+    setNascimento(cleanValues.nascimento);
     setErrors({});
   };
   const [testeRecord, setTesteRecord] = React.useState(teste);
@@ -49,7 +49,7 @@ export default function TesteUpdateForm(props) {
   React.useEffect(resetStateValues, [testeRecord]);
   const validations = {
     celular: [],
-    owner: [],
+    nascimento: [],
   };
   const runValidationTasks = async (
     fieldName,
@@ -78,7 +78,7 @@ export default function TesteUpdateForm(props) {
         event.preventDefault();
         let modelFields = {
           celular,
-          owner,
+          nascimento,
         };
         const validationResponses = await Promise.all(
           Object.keys(validations).reduce((promises, fieldName) => {
@@ -135,7 +135,7 @@ export default function TesteUpdateForm(props) {
           if (onChange) {
             const modelFields = {
               celular: value,
-              owner,
+              nascimento,
             };
             const result = onChange(modelFields);
             value = result?.celular ?? value;
@@ -151,29 +151,29 @@ export default function TesteUpdateForm(props) {
         {...getOverrideProps(overrides, "celular")}
       ></TextField>
       <TextField
-        label="Owner"
+        label="Nascimento"
         isRequired={false}
         isReadOnly={false}
-        value={owner}
+        value={nascimento}
         onChange={(e) => {
           let { value } = e.target;
           if (onChange) {
             const modelFields = {
               celular,
-              owner: value,
+              nascimento: value,
             };
             const result = onChange(modelFields);
-            value = result?.owner ?? value;
+            value = result?.nascimento ?? value;
           }
-          if (errors.owner?.hasError) {
-            runValidationTasks("owner", value);
+          if (errors.nascimento?.hasError) {
+            runValidationTasks("nascimento", value);
           }
-          setOwner(value);
+          setNascimento(value);
         }}
-        onBlur={() => runValidationTasks("owner", owner)}
-        errorMessage={errors.owner?.errorMessage}
-        hasError={errors.owner?.hasError}
-        {...getOverrideProps(overrides, "owner")}
+        onBlur={() => runValidationTasks("nascimento", nascimento)}
+        errorMessage={errors.nascimento?.errorMessage}
+        hasError={errors.nascimento?.hasError}
+        {...getOverrideProps(overrides, "nascimento")}
       ></TextField>
       <Flex
         justifyContent="space-between"
