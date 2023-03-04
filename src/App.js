@@ -29,6 +29,8 @@ function App( signOut, user ) {
       <EditProfile></EditProfile>
       <button onClick={signOut}>Sair</button> */}
 
+      <h5>TutoriaisUdemy1</h5>
+
     </div>
   );
 }
