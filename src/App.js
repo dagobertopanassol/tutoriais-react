@@ -1,41 +1,34 @@
 //import logo from './logo.svg';
-import { withAuthenticator } from '@aws-amplify/ui-react';
 import './App.css';
 import '@aws-amplify/ui-react/styles.css'; // require
 import { Amplify } from 'aws-amplify';
-import awsExports from './aws-exports';
-//componentes
-import Button from './components/Button';
-//import Lista from './consultas/Lista';
-import {  EditProfile  } from './ui-components';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+//Dados e Model //Componentes //import {  EditProfile  } from './ui-components'; //import Button from './components/Button'; import {  EditProfileCollection  } from './ui-components';
 
+//componentes
+import {  NavBar  } from './ui-components';
+/*import Button from './components/Button';
+//import Lista from './consultas/Lista';
+import {  DiplomasCreateForm  } from './ui-components';
+import {  EditProfile  } from './ui-components';
+import {  EditProfileCollection  } from './ui-components'; */
+
+import awsExports from './aws-exports';
 Amplify.configure(awsExports);
 
 function App( signOut, user ) { 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <div>
-          <p> 
-            Bem Vindo  {user.username}, {user.id}<br></br>
-            CurricuBI - Facilitando sua Vida na hora de criar o seu Melhor Currículo !
+      <h5>Bem Vindo  {user.username}</h5>
+      <NavBar></NavBar>
+      {/*
+      <Button title="Titulo1" user = {user.username}></Button>
+       <DiplomasCreateForm></DiplomasCreateForm>
+      <EditProfileCollection></EditProfileCollection>
+      <EditProfile></EditProfile>
+      <button onClick={signOut}>Sair</button> */}
 
-          </p>
-          {
-          /* <Button title="Propriedade title"></Button> */
-          
-          <EditProfile></EditProfile>
-       
-
-          }
-        </div>
-      </header>
-      <div>
-      
-        <button onClick={signOut}>Sair</button>
-       
-
-      </div>
     </div>
   );
 }
